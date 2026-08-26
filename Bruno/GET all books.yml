@@ -1,0 +1,18 @@
+info:
+  name: GET all books
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: http://localhost:8080/api/books
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiYWRtaW4iLCJleHAiOjE3ODc3NDgxMDcsImlhdCI6MTc4Nzc0NDUwNywic2NvcGUiOiJST0xFX0FETUlOIEZBQ1RPUl9QQVNTV09SRCJ9.JpjZo1iQmWqpnZJVnyGR5SM24xojBGIjrmBfrQh1CAI
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

@@ -1,0 +1,18 @@
+info:
+  name: DELETE book
+  type: http
+  seq: 1
+
+http:
+  method: DELETE
+  url: http://localhost:8080/api/books/cb1d88d2-f186-4e67-b5d7-24a4a1aff4bb
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiYWRtaW4iLCJleHAiOjE3ODc3NDgyMjAsImlhdCI6MTc4Nzc0NDYyMCwic2NvcGUiOiJST0xFX0FETUlOIEZBQ1RPUl9QQVNTV09SRCJ9.ingReP3VAI_0VE372ITP4Zvv_gWbMpFaHzyRhHgtRuQ
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

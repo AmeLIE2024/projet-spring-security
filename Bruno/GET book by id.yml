@@ -1,0 +1,18 @@
+info:
+  name: GET book by id
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: http://localhost:8080/api/books/e683a352-42ef-4d9f-b7d5-9380cc6a52b8
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiYWRtaW4iLCJleHAiOjE3ODc3NDgyMjAsImlhdCI6MTc4Nzc0NDYyMCwic2NvcGUiOiJST0xFX0FETUlOIEZBQ1RPUl9QQVNTV09SRCJ9.ingReP3VAI_0VE372ITP4Zvv_gWbMpFaHzyRhHgtRuQ
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

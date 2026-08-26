@@ -1,0 +1,24 @@
+info:
+  name: PUT Update book
+  type: http
+  seq: 1
+
+http:
+  method: PUT
+  url: http://localhost:8080/api/books/01478b35-4d59-4763-8cd1-9616add65c5f
+  body:
+    type: json
+    data: |-
+      {
+        "numberOfCopies": 300000
+      }
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiYWRtaW4iLCJleHAiOjE3ODc3NDgyMjAsImlhdCI6MTc4Nzc0NDYyMCwic2NvcGUiOiJST0xFX0FETUlOIEZBQ1RPUl9QQVNTV09SRCJ9.ingReP3VAI_0VE372ITP4Zvv_gWbMpFaHzyRhHgtRuQ
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
