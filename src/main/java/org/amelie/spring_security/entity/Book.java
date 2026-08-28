@@ -1,8 +1,6 @@
-package org.amelie.springsecurity.Entity;
+package org.amelie.spring_security.entity;
 
 import jakarta.persistence.*;
-
-import java.util.UUID;
 
 @Entity
 @Table(name = "book")

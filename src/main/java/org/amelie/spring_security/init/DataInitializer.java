@@ -1,11 +1,12 @@
-package org.amelie.springsecurity.init;
+package org.amelie.spring_security.init;
 
-import org.amelie.springsecurity.Entity.Book;
-import org.amelie.springsecurity.Entity.Role;
-import org.amelie.springsecurity.Entity.UserEntity;
-import org.amelie.springsecurity.Repository.BookRepository;
-import org.amelie.springsecurity.Repository.RoleRepository;
-import org.amelie.springsecurity.Repository.UserRepository;
+import org.amelie.spring_security.entity.Book;
+import org.amelie.spring_security.entity.Role;
+import org.amelie.spring_security.entity.UserEntity;
+import org.amelie.spring_security.repository.BookRepository;
+import org.amelie.spring_security.repository.RoleRepository;
+import org.amelie.spring_security.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
 import java.util.Set;
 
 @Component
-public class Datainitializer implements CommandLineRunner {
+public class DataInitializer implements CommandLineRunner {
 
 
     private final RoleRepository roleRepository;
@@ -21,7 +22,7 @@ public class Datainitializer implements CommandLineRunner {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public Datainitializer(
+    public DataInitializer(
             RoleRepository roleRepositoryInjected,
             BookRepository bookRepositoryInjected,
             UserRepository userRepositoryInjected,
@@ -31,6 +32,12 @@ public class Datainitializer implements CommandLineRunner {
         this.userRepository = userRepositoryInjected;
         this.passwordEncoder = passwordEncoderInjected;
     }
+
+    @Value("${app.init.admin-password}")
+    private String adminPassword;
+
+    @Value("${app.init.user-password}")
+    private String userPassword;
 
 
     @Override
@@ -51,14 +58,14 @@ public class Datainitializer implements CommandLineRunner {
     UserEntity admin = new UserEntity();
         admin.setUsername("admin");
         admin.setEmail("admin@example.com");
-        admin.setPassword(passwordEncoder.encode("securepassword"));
+        admin.setPassword(passwordEncoder.encode(adminPassword));
         admin.setAuthorities(Set.of(roleAdmin));
         userRepository.save(admin);
 
     UserEntity user = new UserEntity();
         user.setUsername("bastien");
         user.setEmail("bastien@example.com");
-        user.setPassword(passwordEncoder.encode("tacostacos"));
+        user.setPassword(passwordEncoder.encode(userPassword));
         user.setAuthorities(Set.of(roleUser));
         userRepository.save(user);
 }

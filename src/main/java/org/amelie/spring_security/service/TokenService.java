@@ -1,7 +1,8 @@
-package org.amelie.springsecurity.Service;
+package org.amelie.spring_security.service;
 
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.jwt.JwsHeader;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
@@ -23,13 +24,16 @@ public class TokenService {
     }
 
     public String generateToken(Authentication auth) {
+        // Création du header
         JwsHeader header = JwsHeader.with(() -> "HS256").build();
 
+        //Récupération du ; role de l'utilisateur
         String scope = auth.getAuthorities().stream()
-                .map((authority) -> authority.getAuthority())
+                .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(" "));
 
         Instant now = Instant.now();
+        //Création du payload
         JwtClaimsSet payload = JwtClaimsSet.builder()
                 .issuer("self")
                 .issuedAt(now)

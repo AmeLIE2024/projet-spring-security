@@ -1,4 +1,4 @@
-package org.amelie.springsecurity.Entity;
+package org.amelie.spring_security.entity;
 
 import jakarta.persistence.*;
 import org.jspecify.annotations.Nullable;
@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
 @Table(name="users")

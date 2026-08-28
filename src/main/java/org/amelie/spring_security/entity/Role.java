@@ -1,4 +1,4 @@
-package org.amelie.springsecurity.Entity;
+package org.amelie.spring_security.entity;
 
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,7 +10,9 @@ public class Role implements GrantedAuthority{
     @Id
     private String authority;
 
+
     public Role() {
+        // Constructeur vide requis par JPA/Hibernate
     }
 
     @Override

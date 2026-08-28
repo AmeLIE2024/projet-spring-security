@@ -1,4 +1,4 @@
-package org.amelie.springsecurity;
+package org.amelie.spring_security;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

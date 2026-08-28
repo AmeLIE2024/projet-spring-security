@@ -1,6 +1,6 @@
-package org.amelie.springsecurity.Service;
+package org.amelie.spring_security.service;
 
-import org.amelie.springsecurity.Repository.UserRepository;
+import org.amelie.spring_security.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

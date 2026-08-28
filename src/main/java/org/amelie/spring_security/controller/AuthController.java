@@ -1,12 +1,15 @@
-package org.amelie.springsecurity.Controller;
+package org.amelie.spring_security.controller;
 
-import org.amelie.springsecurity.Dto.LoginDto;
-import org.amelie.springsecurity.Entity.UserEntity;
-import org.amelie.springsecurity.Repository.UserRepository;
+import org.amelie.spring_security.dto.LoginDto;
+import org.amelie.spring_security.dto.LoginRequestDto;
+import org.amelie.spring_security.dto.RegisterRequestDto;
+import org.amelie.spring_security.dto.RegisterResponseDto;
+import org.amelie.spring_security.entity.UserEntity;
+import org.amelie.spring_security.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.amelie.springsecurity.Service.TokenService;
+import org.amelie.spring_security.service.TokenService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,22 +38,27 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public LoginDto login(@RequestBody UserEntity user) {
+    public LoginDto login(@RequestBody LoginRequestDto request) {
 
         Authentication auth = this.authManager.authenticate(new UsernamePasswordAuthenticationToken(
-                user.getUsername(), user.getPassword()));
+                request.username(), request.password()));
         String token = tokenService.generateToken(auth);
 
+
         UserEntity userConnected = (UserEntity) auth.getPrincipal();
+        if(userConnected == null) {
+            throw new IllegalStateException("Utilisateur non authentifié correctement");
+        }
         return new LoginDto(token, userConnected.getUsername());
     }
 
     @PostMapping("/register")
-    public UserEntity registerUser(@RequestBody UserEntity user) {
-
-        user.setUsername(user.getUsername().toLowerCase());
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setEmail(user.getEmail().toLowerCase());
-        return userRepository.save(user);
+    public RegisterResponseDto registerUser(@RequestBody RegisterRequestDto request) {
+        UserEntity user = new UserEntity();
+        user.setUsername(request.username().toLowerCase());
+        user.setPassword(passwordEncoder.encode(request.password()));
+        user.setEmail(request.email().toLowerCase());
+        UserEntity saved = userRepository.save(user);
+        return new RegisterResponseDto(saved.getUsername(), saved.getEmail());
     }
 }
